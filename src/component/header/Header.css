@@ -1,5 +1,5 @@
 .title{
-    font-size: 6vw;
+    font-size: 5vw;
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
 }
@@ -26,10 +26,11 @@
 
 @media (max-width: 900px){
     .header{
-        height: 25vh;
+        height: 23vh;
     }
 
     .title{
+        margin-top: 5px;
         font-size: 11vw;
     }
 }

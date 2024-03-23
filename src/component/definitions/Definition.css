@@ -1,10 +1,11 @@
 .meanings{
+    margin-top: 5vh;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
     scrollbar-width: thin;
     height: 55vh;
-    border: 10px solid rgb(105, 105, 105);
+    border: 2px solid rgb(128, 128, 128);
     border-radius: 10px;
     padding: 10px 20px;
     overflow-x: hidden;
@@ -25,8 +26,11 @@
 
 @media (max-width: 900px) {
     .meanings{
-        height: 60vh;
+        height: 55vh;
         overflow-x: hidden;
         overflow-y: scroll;
+    }
+    .subTitle{
+        font-size: 4vh;
     }
 }

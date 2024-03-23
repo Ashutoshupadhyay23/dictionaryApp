@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import Header from './component/header/Header'
 
-import { Container, Switch } from '@mui/material'
-import {withStyles} from '@mui/material/styles'
+import { Container, Switch, withStyles,  } from '@mui/material'
+// import {withStyles} from '@mui/material/styles'
 import axios from 'axios'
 import Definition from './component/definitions/Definition'
 import { grey } from '@mui/material/colors'
@@ -13,8 +13,9 @@ function App() {
   const [meanings, setMeanings] = useState([])
   const [word, setWord] = useState("")
   const [category, setCategory] = useState("en")
+  const [lightMode, setLightMode] = useState(false)
 
-  const purpleSwitch = withStyles({
+  const DarkMode = withStyles({
     swichBase: {
       color: grey[300],
       "&$checked" : {
@@ -27,6 +28,7 @@ function App() {
     checked: {},
     track: {},
   })(Switch);
+
 
   const dictionaryApi = async () => {
     try {
@@ -46,17 +48,27 @@ function App() {
   return (
     <div 
       className='App'
-      style={{height: '100vh', backgroundColor: '#282c34', color: 'white'}}
+      style={{
+        height: '100vh', 
+        backgroundColor: lightMode ? '#fff' : '#282c34', 
+        color:lightMode ? 'black' : 'white',
+        transition: 'all 0.5s linear',
+      }}
     >
       <Container
         maxWidth='md'
-        style={{display: 'flex', flexDirection: 'column', height: '100vh'}}
+        style={{display: 'flex', flexDirection: 'column', height: '100vh', justifyContent: 'space-evenly'}}
       >
 
         <div 
           style={{position: 'absolute', top: 0, right: 15, paddingTop: 10}}
         >
-          theme
+          <span>{lightMode ? 'Dark' : 'Light'} Mode</span>
+          <DarkMode 
+            checked={lightMode} 
+            onChange={() => setLightMode(!lightMode)}
+
+          />
         </div>
         
         <Header 
@@ -64,6 +76,7 @@ function App() {
           setCategory={setCategory} 
           word={word} 
           setWord={setWord} 
+          lightMode={lightMode}
         />
 
        {meanings && (
@@ -71,6 +84,7 @@ function App() {
           word={word} 
           meanings={meanings} 
           category={category} 
+          lightMode={lightMode}
         />)}
 
       </Container>
